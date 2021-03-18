@@ -1,7 +1,7 @@
-import CharacterDatabase from "./Character/CharacterDatabase"
-import ArtifactDatabase from "./Artifact/ArtifactDatabase"
+import CharacterDatabase from "./CharacterDatabase"
+import ArtifactDatabase from "./ArtifactDatabase"
 import { DatabaseInitAndVerify } from "./DatabaseUtil"
-import { loadFromLocalStorage, saveToLocalStorage } from "./Util/Util"
+import { loadFromLocalStorage, saveToLocalStorage } from "../Util/Util"
 
 describe('DatabaseUtil Tests', () => {
   describe('dbVersion 2', () => {
