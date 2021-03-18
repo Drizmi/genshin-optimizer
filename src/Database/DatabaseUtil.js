@@ -1,8 +1,8 @@
-import Artifact from "./Artifact/Artifact";
-import ArtifactDatabase from "./Artifact/ArtifactDatabase";
-import CharacterDatabase from "./Character/CharacterDatabase";
+import Artifact from "../Artifact/Artifact";
+import ArtifactDatabase from "./ArtifactDatabase";
+import CharacterDatabase from "./CharacterDatabase";
 import { changes as v2change, dmgModeToHitMode } from "./dbV2KeyMap";
-import { loadFromLocalStorage, saveToLocalStorage } from "./Util/Util";
+import { loadFromLocalStorage, saveToLocalStorage } from "../Util/Util";
 
 function DatabaseInitAndVerify() {
   const dbVersion = getDatabaseVersion()

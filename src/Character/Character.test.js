@@ -1,5 +1,5 @@
+import CharacterDatabase from "../Database/CharacterDatabase"
 import Character from "./Character"
-import CharacterDatabase from "./CharacterDatabase"
 
 describe('Character.mergeStats()', () => {
   test('should merge stats', () => {
