@@ -253,7 +253,7 @@ export default class Character {
     character.equippedArtifacts = {}
     Object.entries(artifactIds).forEach(([key, artid]) =>
       character.equippedArtifacts[key] = artid)
-    CharacterDatabase.updateCharacter(character);
+    CharacterDatabase.update(character);
   }
   static remove(characterKey) {
     let character = CharacterDatabase.get(characterKey)

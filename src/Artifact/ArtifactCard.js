@@ -99,7 +99,7 @@ export default function ArtifactCard({ artifactId, artifactObj, forceUpdate, onE
                   style={location ? { pointerEvents: 'none' } : {}}
                   onClick={() => {
                     art.lock = !lock
-                    ArtifactDatabase.updateArtifact(art);
+                    ArtifactDatabase.update(art);
                     forceUpdate?.();
                   }}>
                   <FontAwesomeIcon icon={(lock || location) ? faLock : faLockOpen} className="fa-fw" />

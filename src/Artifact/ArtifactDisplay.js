@@ -61,7 +61,7 @@ export default class ArtifactDisplay extends React.Component {
   forceUpdateArtifactDisplay = () => this.forceUpdate()
 
   addArtifact = (art) => {
-    ArtifactDatabase.updateArtifact(art);
+    ArtifactDatabase.update(art);
     this.setState({ artToEditId: null })
   }
 

@@ -529,7 +529,7 @@ export default class BuildDisplay extends React.Component {
       if (!character) return
       const { setFilters, statFilters, artifactConditionals, mainStat, optimizationTarget, artifactsAssumeFull, useLockedArts, ascending } = deepClone(this.state)
       character.buildSetting = { setFilters, statFilters, artifactConditionals, mainStat, optimizationTarget, artifactsAssumeFull, useLockedArts, ascending }
-      CharacterDatabase.updateCharacter(character)
+      CharacterDatabase.update(character)
     }
   }
   componentWillUnmount() {
@@ -664,13 +664,13 @@ function HitModeCard({ characterKey, forceUpdate, className }) {
   const setHitmode = v => {
     const char = CharacterDatabase.get(characterKey)
     char.hitMode = v;
-    CharacterDatabase.updateCharacter(char)
+    CharacterDatabase.update(char)
     forceUpdate()
   }
   const setReactionMode = r => {
     const char = CharacterDatabase.get(characterKey)
     char.reactionMode = r;
-    CharacterDatabase.updateCharacter(char)
+    CharacterDatabase.update(char)
     forceUpdate()
   }
   return <Card bg="lightcontent" text="lightfont" className={className}>

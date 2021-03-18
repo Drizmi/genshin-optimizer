@@ -142,7 +142,7 @@ function DatabaseInitAndVerify() {
     }
 
     //Update any invalid artifacts in DB
-    if (!valid) ArtifactDatabase.updateArtifact(art)
+    if (!valid) ArtifactDatabase.update(art)
   })
 
   let chars = CharacterDatabase.getCharacterDatabase();
@@ -182,7 +182,7 @@ function DatabaseInitAndVerify() {
     }
 
     //update any invalid characters in DB
-    if (!valid) CharacterDatabase.updateCharacter(character)
+    if (!valid) CharacterDatabase.update(character)
   })
   setDatabaseVersion(2)
 }

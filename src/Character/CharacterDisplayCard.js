@@ -125,7 +125,7 @@ export default class CharacterDisplayCard extends React.Component {
   updateCharacter(state) {
     state = deepClone(state)
     delete state.compareAgainstEquipped
-    CharacterDatabase.updateCharacter(state)
+    CharacterDatabase.update(state)
   }
   componentDidUpdate(prevProps) {
     if (prevProps.characterKey !== this.props.characterKey && this.props.characterKey !== this.state.characterKey)
