@@ -12,7 +12,7 @@ export default class ArtifactDatabase {
   static isInvalid = (art) =>
     !art || !art.setKey || !art.numStars || !art.slotKey || !art.mainStatKey
   static getArtifactDatabase = () => deepClone(artifactDatabase);
-  static getArtifactIdList = () => Object.keys(artifactDatabase);
+  static getIdList = () => Object.keys(artifactDatabase);
   static populateDatebaseFromLocalStorage = () => {
     if (initiated && process.env.NODE_ENV !== "development") return false;
     Object.keys(localStorage).filter(key => key.startsWith("artifact_")).forEach(id => {

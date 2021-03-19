@@ -192,6 +192,52 @@ const getDatabaseVersion = (defVal = 0) =>
 const setDatabaseVersion = (version) =>
   saveToLocalStorage("db_ver", version)
 
+
+function createDatabaseObj() {
+  const characterDatabase = CharacterDatabase.getCharacterDatabase()
+  const artifactDatabase = ArtifactDatabase.getArtifactDatabase()
+  const artifactDisplay = loadFromLocalStorage("ArtifactDisplay.state")
+  const characterDisplay = loadFromLocalStorage("CharacterDisplay.state")
+  const buildsDisplay = loadFromLocalStorage("BuildsDisplay.state")
+
+  return {
+    version: getDatabaseVersion(),
+    characterDatabase,
+    artifactDatabase,
+    artifactDisplay,
+    characterDisplay,
+    buildsDisplay,
+  }
+}
+
+function loadDatabaseObj({ version = 0, characterDatabase, artifactDatabase, artifactDisplay, characterDisplay, buildsDisplay, }) {
+  clearDatabase()
+  //load from obj charDB,artDB
+  Object.entries(characterDatabase).forEach(([charKey, char]) => saveToLocalStorage(`char_${charKey}`, char))
+  Object.entries(artifactDatabase).forEach(([id, art]) => saveToLocalStorage(id, art))
+  //override version
+  setDatabaseVersion(version)
+  saveToLocalStorage("ArtifactDisplay.state", artifactDisplay)
+  saveToLocalStorage("CharacterDisplay.state", characterDisplay)
+  saveToLocalStorage("BuildsDisplay.state", buildsDisplay)
+
+  DatabaseInitAndVerify()
+}
+function clearDatabase() {
+  //delete all characters and artifacts
+  Object.keys(localStorage).filter(key => key.startsWith("char_") || key.startsWith("artifact_")).forEach(id =>
+    localStorage.removeItem(id))
+  localStorage.removeItem("db_ver")
+  localStorage.removeItem("ArtifactDisplay.state")
+  localStorage.removeItem("CharacterDisplay.state")
+  localStorage.removeItem("BuildsDisplay.state")
+  //clear the database to validate again
+  CharacterDatabase.clearDatabase()
+  ArtifactDatabase.clearDatabase()
+}
 export {
-  DatabaseInitAndVerify
+  DatabaseInitAndVerify,
+  createDatabaseObj,
+  loadDatabaseObj,
+  clearDatabase
 };
