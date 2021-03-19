@@ -55,11 +55,10 @@ describe(`Testing StatData`, () => {
     // Discord ID: 822486382450049024
     // Discord Handle: Derpy#2132
     test("should correctly compute Swirl dmgs", () => {
-      const stats = {
+      const initialStats = {
         characterLevel: 70,
         enemyLevel: 87,
       }
-      const { initialStats, formula } = PreprocessFormulas(GetDependencies({}, ["hydro_swirl_hit"]), stats)
       
       // Sucrose 70/80 vs. Ruin Guard 87
       // Hydro Swirl DMG 753, EM 229, no set / bonus
@@ -70,20 +69,24 @@ describe(`Testing StatData`, () => {
 
       let tmp
       tmp = { ...initialStats, eleMas: 229 }
-      formula(tmp); expect(tmp.hydro_swirl_hit).toApproximate(753)
+      PreprocessFormulas(GetDependencies({}, ["hydro_swirl_hit"]), tmp).formula(tmp)
+      expect(tmp.hydro_swirl_hit).toApproximate(753)
       
       tmp = { ...initialStats, eleMas: 269, anemo_dmg_: 15 } // 2VV
-      formula(tmp); expect(tmp.hydro_swirl_hit).toApproximate(805)
+      PreprocessFormulas(GetDependencies({}, ["hydro_swirl_hit"]), tmp).formula(tmp)
+      expect(tmp.hydro_swirl_hit).toApproximate(805)
 
-      tmp = { ...initialStats, eleMas: 269, anemo_dmg_: 15 , swirl_dmg_: 60, hydro_enemyRes_: 40 } // 4VV
-      formula(tmp); expect(tmp.hydro_swirl_hit).toApproximate(1327)
+      tmp = { ...initialStats, eleMas: 269, anemo_dmg_: 15 , swirl_dmg_: 60, hydro_enemyRes_: -30 } // 4VV
+      PreprocessFormulas(GetDependencies({}, ["hydro_swirl_hit"]), tmp).formula(tmp)
+      expect(tmp.hydro_swirl_hit).toApproximate(1327)
 
       tmp = { ...initialStats, eleMas: 434, anemo_dmg_: 15 } // 2VV
-      formula(tmp); expect(tmp.hydro_swirl_hit).toApproximate(1084)
-      console.log(tmp.hydro_swirl_hit)
+      PreprocessFormulas(GetDependencies({}, ["hydro_swirl_hit"]), tmp).formula(tmp)
+      expect(tmp.hydro_swirl_hit).toApproximate(1084)
 
-      tmp = { ...initialStats, eleMas: 434, anemo_dmg_: 15 , swirl_dmg_: 60, hydro_enemyRes_: 40 } // 4VV
-      formula(tmp); expect(tmp.hydro_swirl_hit).toApproximate(1578)
+      tmp = { ...initialStats, eleMas: 434, anemo_dmg_: 15 , swirl_dmg_: 60, hydro_enemyRes_: -30 } // 4VV
+      PreprocessFormulas(GetDependencies({}, ["hydro_swirl_hit"]), tmp).formula(tmp)
+      expect(tmp.hydro_swirl_hit).toApproximate(1578)
     })
   })
 })
