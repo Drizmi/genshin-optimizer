@@ -12,11 +12,13 @@ import { CharacterSelectionDropdownList } from '../Components/CharacterSelection
 import CustomFormControl from '../Components/CustomFormControl';
 import { Stars } from '../Components/StarDisplay';
 import { DatabaseInitAndVerify } from '../DatabaseUtil';
+import InfoComponent from '../InfoComponent';
 import Stat from '../Stat';
 import { deepClone, loadFromLocalStorage, saveToLocalStorage } from '../Util/Util';
 import Artifact from './Artifact';
 import ArtifactCard from './ArtifactCard';
 import ArtifactDatabase from './ArtifactDatabase';
+import ArtifactDisplayInfo from './ArtifactDisplayInfo/ArtifactDisplayInfo';
 import ArtifactEditor from './ArtifactEditor';
 
 const sortMap = {
@@ -104,12 +106,15 @@ export default class ArtifactDisplay extends React.Component {
     let locationDisplay
     if (!filterLocation) locationDisplay = <span>Location: Any</span>
     else if (filterLocation === "Inventory") locationDisplay = <span>Location: Inventory</span>
+    else if (filterLocation === "Equipped") locationDisplay = <span>Location: Equipped</span>
     else locationDisplay = <b>{Character.getName(filterLocation)}</b>
     let artifacts = Object.values(artifactDB).filter(art => {
-      if (filterLocation) {
-        if (filterLocation === "Inventory" && art.location) return false;
-        else if (filterLocation !== "Inventory" && filterLocation !== art.location) return false;
-      }
+      if (filterLocation === "Inventory") {
+        if (art.location) return false;
+      } else if (filterLocation === "Equipped") {
+        if (!art.location) return false;
+      } else if (filterLocation && filterLocation !== art.location) return false;
+
       if (filterArtSetKey && filterArtSetKey !== art.setKey) return false;
       if (filterSlotKey && filterSlotKey !== art.slotKey) return false
       if (filterMainStatKey && filterMainStatKey !== art.mainStatKey) return false
@@ -143,6 +148,17 @@ export default class ArtifactDisplay extends React.Component {
       return sortNum * (ascending ? 1 : -1)
     })
     return (<Container className="mt-2" ref={this.scrollRef}>
+      <InfoComponent
+        pageKey="artifactPage"
+        modalTitle="Artifact Editing/Management Page Info"
+        text={["The maximum efficiency of a 4 star artifact is around 60%.",
+          "The maximum efficiency of an artifact will usually decrease as you upgrade. It's perfectly normal!",
+          "Substats with \"1\"s are the hardest to scan in screenshots.",
+          "If all your rolls(6) went into a single substat, it will be purple!",
+          "Click on \"Details\" when you are upgrading your artifacts in game to scan as you upgrade."]}
+      >
+        <ArtifactDisplayInfo />
+      </InfoComponent>
       <Row className="mb-2 no-gutters"><Col>
         <ArtifactEditor
           artifactIdToEdit={artToEditId}
@@ -156,7 +172,7 @@ export default class ArtifactDisplay extends React.Component {
             <span>Artifact Filter</span>
             <Button size="sm" className="ml-2" variant="danger" onClick={this.ressetFilters} ><FontAwesomeIcon icon={faUndo} className="fa-fw" /> Reset</Button>
             <Button size="sm" className="ml-2" variant="danger" onClick={this.unequipAll} >Unequip Artifacts on every character</Button>
-            <span className="float-right text-right">Showing <b>{artifacts.length > maxNumArtifactsToDisplay ? maxNumArtifactsToDisplay : artifacts.length}</b> out of {totalArtNum} Artifacts</span>
+            <span className="float-right text-right">Showing <b>{artifacts.length > maxNumArtifactsToDisplay ? maxNumArtifactsToDisplay : artifacts.length}</b> out of {artifacts.length !== totalArtNum ? `${artifacts.length}/` : ""}{totalArtNum} Artifacts</span>
           </Card.Header>
           <Card.Body>
             <Row className="mb-n2">
@@ -277,6 +293,7 @@ export default class ArtifactDisplay extends React.Component {
                   <Dropdown.Menu>
                     <Dropdown.Item onClick={() => this.setState({ filterLocation: "" })}>Unselect</Dropdown.Item>
                     <Dropdown.Item onClick={() => this.setState({ filterLocation: "Inventory" })}>Inventory</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.setState({ filterLocation: "Equipped" })}>Currently Equipped</Dropdown.Item>
                     <Dropdown.Divider />
                     <CharacterSelectionDropdownList onSelect={cid => this.setState({ filterLocation: cid })} />
                   </Dropdown.Menu>
@@ -318,4 +335,3 @@ export default class ArtifactDisplay extends React.Component {
     </Container >)
   }
 }
-

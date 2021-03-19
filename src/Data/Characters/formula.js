@@ -12,23 +12,23 @@ import hutao from './Hu Tao/data'
 // import jean from './Jean/data'
 // import kaeya from './Kaeya/data'
 import keqing from './Keqing/data'
-// import klee from './Klee/data'
+import klee from './Klee/data'
 // import lisa from './Lisa/data'
 import mona from './Mona/data'
 import ningguang from './Ningguang/data'
 import noelle from './Noelle/data'
 // import qiqi from './Qiqi/data'
-// import razor from './Razor/data'
+import razor from './Razor/data'
 import sucrose from './Sucrose/data'
 // import tartaglia from './Tartaglia/data'
 // import traveler_anemo from './Traveler Anemo/data'
 // import traveler_geo from './Traveler Geo/data'
 import venti from './Venti/data'
 import xiao from './Xiao/data'
-// import xiangling from './Xiangling/data'
+import xiangling from './Xiangling/data'
 import xingqiu from './Xingqiu/data'
 // import xinyan from './Xinyan/data'
-// import zhongli from './Zhongli/data'
+import zhongli from './Zhongli/data'
 const formula = {
   // albedo,
   amber,
@@ -44,22 +44,22 @@ const formula = {
   // jean,
   // kaeya,
   keqing,
-  // klee,
+  klee,
   // lisa,
   mona,
   ningguang,
   noelle,
   // qiqi,
-  // razor,
+  razor,
   sucrose,
   // tartaglia,
   // traveler_anemo,
   // traveler_geo,
   venti,
   xiao,
-  // xiangling,
+  xiangling,
   xingqiu,
   // xinyan,
-  // zhongli
+  zhongli
 };
 export default formula

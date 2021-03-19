@@ -57,7 +57,7 @@ const char = {
           variant: (tlvl, stats) => getTalentStatKeyVariant("charged", stats, true),
         }, (c, a) => a >= 1 && {
           text: <span>Full Aimed Shot on Oz <span className="text-electro">AoE</span></span>,
-          formulaText: (tlvl, stats) => <span>{data.charged.aimedShot[tlvl]}% * 152.7% {Stat.printStat(getTalentStatKey("charged", stats, true), stats)}</span>,
+          formulaText: (tlvl, stats) => <span>152.7% * {data.charged.fullAimedShot[tlvl]}% {Stat.printStat(getTalentStatKey("charged", stats, true), stats)}</span>,
           formula: formula.charged.fullAimedShot,
           variant: (tlvl, stats) => getTalentStatKeyVariant("charged", stats, true),
         }]
@@ -166,9 +166,9 @@ const char = {
         text: <span>If your active character triggers an <span className="text-electro">Electro-related Elemental Reaction</span> when Oz is on the field, the opponent shall be stricken with Thundering Retribution, dealing <span className="text-electro">Electro DMG</span> equal to 80% of Fischl's ATK.</span>,
         fields: [(con, a) => a >= 4 && {
           text: "Thundering Retribution",
-          formulaText: (tlvl, stats) => <span>80% {Stat.printStat(getTalentStatKey("elemental", stats), stats)}</span>,
+          formulaText: (tlvl, stats) => <span>80% {Stat.printStat(getTalentStatKey("skill", stats), stats)}</span>,
           formula: formula.passive2.thunderRetri,
-          variant: (tlvl, stats) => getTalentStatKeyVariant("elemental", stats),
+          variant: (tlvl, stats) => getTalentStatKeyVariant("skill", stats),
         }]
       }],
     },
@@ -184,9 +184,9 @@ const char = {
         text: <span>Even when Oz is not present in combat, he can still watch over Fischl through the crow's eyes. When Fischl attacks an opponent, Oz fires a joint attack through the crow's eyes, dealing 22% of <span className="text-physical">ATK DMG</span>.</span>,
         fields: [(con) => con >= 1 && {
           text: "Joint Attack DMG",
-          formulaText: (tlvl, stats) => <span>22% {Stat.printStat(getTalentStatKey("physical", stats), stats)}</span>,
+          formulaText: (tlvl, stats) => <span>22% {Stat.printStat(getTalentStatKey("normal", stats), stats)}</span>,
           formula: formula.constellation1.jointAttDmg,
-          variant: (tlvl, stats) => getTalentStatKeyVariant("phy", stats),
+          variant: (tlvl, stats) => getTalentStatKeyVariant("normal", stats),
         }]
       }],
     },
