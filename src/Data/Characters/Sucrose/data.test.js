@@ -42,7 +42,7 @@ describe("Testing Sucrose's Formulas with artifacts", () => {
       beforeAll(() => setupStats.hitMode = "hit")
       afterAll(() => delete setupStats.hitMode)
   
-      describe("enemy lvl 85", () => {
+      describe("Ruin Guard lvl 85", () => {
         beforeAll(() => setupStats.enemyLevel = 85)
         afterAll(() => delete setupStats.enemyLevel)
   
@@ -57,7 +57,7 @@ describe("Testing Sucrose's Formulas with artifacts", () => {
           expect(formula.burst.dot(burst, stats)[0](stats)).toApproximate(836)
         })
       })
-      describe("enemy lvl 93", () => {
+      describe("Electro Hypostasis lvl 93", () => {
         beforeAll(() => setupStats.enemyLevel = 85)
         afterAll(() => delete setupStats.enemyLevel)
   
@@ -108,7 +108,7 @@ describe("Testing Sucrose's Formulas with artifacts", () => {
       beforeAll(() => setupStats.hitMode = "hit")
       afterAll(() => delete setupStats.hitMode)
   
-      describe("enemy lvl 93", () => {
+      describe("Electro Hypostasis lvl 93", () => {
         beforeAll(() => setupStats.enemyLevel = 93)
         afterAll(() => delete setupStats.enemyLevel)
   
@@ -124,7 +124,7 @@ describe("Testing Sucrose's Formulas with artifacts", () => {
         })
       })
 
-      describe("enemy lvl 86", () => {
+      describe("Hilichurl lvl 86", () => {
         beforeAll(() => setupStats.enemyLevel = 86)
         afterAll(() => delete setupStats.enemyLevel)
   
