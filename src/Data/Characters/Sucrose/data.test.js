@@ -95,14 +95,10 @@ describe("Testing Sucrose's Formulas with artifacts", () => {
       expect(stats.anemo_dmg_).toApproximate(79.6)
     })
 
-    describe("pyro swirl", () => {
-      beforeAll(() => setupStats.pyro_enemyRes_ -= 40) // 4VV
-      afterAll(() => setupStats.pyro_enemyRes_ += 40)
-
-      test("reaction", () => {
-        expect(stats.pyro_swirl_hit).toApproximate(1518)
-      })
-    })
+    // TODO: Swirl
+    // test("reaction", () => {
+    //   expect(stats.pyro_swirl_hit).toApproximate(NaN)
+    // })
 
     describe("no crit", () => {
       beforeAll(() => setupStats.hitMode = "hit")
