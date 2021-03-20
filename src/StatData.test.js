@@ -64,8 +64,11 @@ describe(`Testing StatData`, () => {
       // Hydro Swirl DMG 753, EM 229, no set / bonus
       // Hydro/Cryo/Electro Swirl DMG 805, EM 269, Viridescent 2-piece
       // Hydro/Cryo/Electro Swirl DMG 1327, EM 269, Viridescent 4-piece
-      // Hydro/Cryo/Electro Swirl DMG 1084, EM 434, Viridescent 2-piece
       // Hydro/Cryo/Electro Swirl DMG 1578, EM 434, Viridescent 4-piece
+      // Hydro/Cryo/Electro Swirl DMG 1002, EM 434, Viridescent 2-piece
+      // Hydro/Cryo/Electro Swirl DMG 1031, EM 462, Viridescent 2-piece
+      // Hydro/Cryo/Electro Swirl DMG 1079, EM 509, Viridescent 2-piece
+      // Hydro/Cryo/Electro Swirl DMG 1084, EM 514, Viridescent 2-piece, Wanderer 2-piece
 
       let tmp
       tmp = { ...initialStats, eleMas: 229 }
@@ -82,11 +85,23 @@ describe(`Testing StatData`, () => {
 
       tmp = { ...initialStats, eleMas: 434, anemo_dmg_: 15 } // 2VV
       PreprocessFormulas(GetDependencies({}, ["hydro_swirl_hit"]), tmp).formula(tmp)
-      expect(tmp.hydro_swirl_hit).toApproximate(1084)
+      expect(tmp.hydro_swirl_hit).toApproximate(1002)
 
       tmp = { ...initialStats, eleMas: 434, anemo_dmg_: 15 , swirl_dmg_: 60, hydro_enemyRes_: -30 } // 4VV
       PreprocessFormulas(GetDependencies({}, ["hydro_swirl_hit"]), tmp).formula(tmp)
       expect(tmp.hydro_swirl_hit).toApproximate(1578)
+
+      tmp = { ...initialStats, eleMas: 462, anemo_dmg_: 15 } // 2VV
+      PreprocessFormulas(GetDependencies({}, ["hydro_swirl_hit"]), tmp).formula(tmp)
+      expect(tmp.hydro_swirl_hit).toApproximate(1031)
+
+      tmp = { ...initialStats, eleMas: 509, anemo_dmg_: 15 } // 2VV
+      PreprocessFormulas(GetDependencies({}, ["hydro_swirl_hit"]), tmp).formula(tmp)
+      expect(tmp.hydro_swirl_hit).toApproximate(1079)
+
+      tmp = { ...initialStats, eleMas: 514, anemo_dmg_: 15 } // 2VV 2WT
+      PreprocessFormulas(GetDependencies({}, ["hydro_swirl_hit"]), tmp).formula(tmp)
+      expect(tmp.hydro_swirl_hit).toApproximate(1084)
     })
   })
 })
